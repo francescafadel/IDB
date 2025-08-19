@@ -45,7 +45,29 @@ The application searches for the following livestock and agriculture-related ter
 
 ## Usage
 
-### Running the Application
+### Method 1: Local Processing (Recommended)
+
+**Quick Start:**
+1. **Drag and drop** your PDF files into the `New Int Dev Bank (IDB)` folder
+2. **Double-click** `analyze_pdfs.sh` (macOS/Linux) or run:
+   ```bash
+   python3 run_analysis.py
+   ```
+3. **Check the `output` folder** for your results
+
+**Advanced Usage:**
+```bash
+# Process all PDFs in current directory
+python3 process_local_pdfs.py
+
+# Process specific file
+python3 process_local_pdfs.py --file "my_document.pdf"
+
+# Use custom input/output directories
+python3 process_local_pdfs.py --input-dir /path/to/pdfs --output-dir /path/to/results
+```
+
+### Method 2: Web Interface
 
 Start the Streamlit application:
 
@@ -55,8 +77,7 @@ python3 -m streamlit run filter_livestock_projects.py
 
 The application will open in your web browser at `http://localhost:8501`.
 
-### Using the Interface
-
+**Using the Web Interface:**
 1. **Upload PDF**: Use the file uploader to select a PDF file containing project data
 2. **Review Results**: View the extracted projects with keyword matches highlighted
 3. **Filter Projects**: Use the dropdown to filter results by:
@@ -80,9 +101,13 @@ The application will extract this information and add two new columns:
 
 ```
 IDB/
-├── filter_livestock_projects.py    # Main Streamlit application
+├── filter_livestock_projects.py    # Streamlit web application
+├── process_local_pdfs.py           # Local PDF processing script
+├── run_analysis.py                 # Quick analysis script
+├── analyze_pdfs.sh                 # Executable script for double-click
 ├── keywords.txt                     # List of livestock-related keywords
 ├── requirements.txt                 # Python dependencies
+├── output/                         # Generated analysis results (created automatically)
 ├── .gitignore                      # Git ignore patterns
 ├── README.md                       # This file
 └── .env.example                    # Environment variables template
